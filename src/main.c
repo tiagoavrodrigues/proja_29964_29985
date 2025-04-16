@@ -9,6 +9,6 @@ int main(int argc, char *argv[]){
 
     clearScreen();
     AREALIST areaList = createAreaList();
-    listAreas(areaList);
+    listAreas(&areaList);
     return 0;
 }
