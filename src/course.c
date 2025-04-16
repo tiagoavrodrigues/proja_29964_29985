@@ -44,7 +44,7 @@ void listAreas(AREALIST *areaList){
     );
     for (unsigned short i = 0; i < areaList->count; i++) {
         printf(
-            "| % 3d | %-42.42s |\n",
+            "| % 3d | %-42.42s \n",
             areaList->items[i].id,
             areaList->items[i].description
         );
