@@ -16,7 +16,6 @@ typedef struct{
     AREA *items;
 } AREALIST;
 
-
 typedef struct{
     enum { CTeSP, Bachelor, Master, Doctorate } type;
     char code[CODE_MAX_CHAR];
