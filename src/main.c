@@ -10,7 +10,15 @@ int main(int argc, char *argv[]){
     clearScreen();
     AREALIST areaList = createAreaList();
     UNITLIST unitList = createUnitList();
+    HCOURSELIST hcourseList = createHCourseList(areaList.items, unitList.items);
+    if(hcourseList.items == NULL){
+        printf("\nOut of memory!\n");
+        return -1;
+    }
+
     listAreas(&areaList);
     listUnits(&unitList);
+    listHCourses(&hcourseList);
+    free(hcourseList.items);
     return 0;
 }
