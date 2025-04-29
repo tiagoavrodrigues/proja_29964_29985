@@ -34,7 +34,7 @@ AREALIST createAreaList(){
 }
 
 void listAreas(AREALIST *areaList){
-    if(!areaList->count || !areaList->items){
+    if(areaList == NULL || !areaList->count || areaList->items == NULL){
         return;
     }
     printf(
