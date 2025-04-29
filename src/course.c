@@ -39,7 +39,7 @@ void listAreas(AREALIST *areaList){
     }
     printf(
         "+-----+--------------------------------------------+\n"
-        "| ID  | Area Description                           |\n"
+        "| ID  | Area Description                            \n"
         "+-----+--------------------------------------------+\n"
     );
     for (unsigned short i = 0; i < areaList->count; i++) {

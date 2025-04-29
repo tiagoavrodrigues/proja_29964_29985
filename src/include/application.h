@@ -5,9 +5,10 @@
 #define APPLICATION_H
 
 
-typedef struct{
+typedef struct application{
     APPLICANT applicant;
     HCOURSE course;
+    struct application *next;
 } APPLICATION;
 
 #endif
