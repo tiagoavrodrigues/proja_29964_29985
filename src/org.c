@@ -15,17 +15,42 @@ UNITLIST createUnitList(){
     return (UNITLIST) {UNIT_ELEMENT_QUANTITY, (UNIT *) units};
 }
 
-UNIT getUnit(unsigned short id){
+UNIT* getUnit(UNITLIST *unitList ,unsigned short id){
+/*     if(unitList == NULL || id >= unitList->count || unitList->items == NULL){
+        return NULL;
+    } */
 
 }
 
 const char* getUnitAcronym(UNITLIST *unitList, unsigned short id){
-    if(id > unitList->count || !unitList->items){
+    if(unitList == NULL || id >= unitList->count || unitList->items == NULL){
         return NULL;
     }
     return unitList->items[id].acronym;
 }
 
-char getUnitDesignation(unsigned id){
+char getUnitDesignation(unsigned short id){
 
+}
+
+void listUnits(UNITLIST *unitList){
+    if(unitList == NULL || !unitList->count || unitList->items == NULL) {
+        return;
+    }
+
+    printf(
+        "+-----+----------+------------------------------------------+\n"
+        "| ID  | Acronym  | Designation                               \n"
+        "+-----+----------+------------------------------------------+\n"
+    );
+    for (unsigned short i = 0; i < unitList->count; i++) {
+        printf(
+            "| %3d | %-8.8s | %-42.42s  \n",
+            unitList->items[i].id,
+            unitList->items[i].acronym,
+            unitList->items[i].designation
+        );
+    }
+    printf("+-----+----------+------------------------------------------+\n");
+    return;
 }
