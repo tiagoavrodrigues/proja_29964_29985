@@ -8,7 +8,7 @@
             "name": "Debug C Program",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/src/build/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/src/build/main",
             "args": [],  // Command-line arguments (if any)
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

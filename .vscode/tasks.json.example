@@ -9,7 +9,7 @@
                 "-g",
                 "*.c",
                 "-o",
-                "${workspaceFolder}/src/build/${fileBasenameNoExtension}"
+                "${workspaceFolder}/src/build/main"
             ],
             "options": {
                 "cwd": "${fileDirname}"
