@@ -15,11 +15,10 @@ UNITLIST createUnitList(){
     return (UNITLIST) {UNIT_ELEMENT_QUANTITY, (UNIT *) units};
 }
 
-UNIT* getUnit(UNITLIST *unitList ,unsigned short id){
-/*     if(unitList == NULL || id >= unitList->count || unitList->items == NULL){
-        return NULL;
-    } */
+UNIT* getUnit(UNIT *units ,unsigned short id){
+    if(units == NULL || id >= UNIT_ELEMENT_QUANTITY) return NULL;
 
+    return &units[id];
 }
 
 const char* getUnitAcronym(UNITLIST *unitList, unsigned short id){
