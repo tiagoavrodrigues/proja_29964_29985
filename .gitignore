@@ -1,5 +1,9 @@
-.vscode/
-data/
-docs/
+*.json
+build/*
+data/*
+docs/*
+!build/
+!data/
+!docs/
 *.exe
 *.pdb
