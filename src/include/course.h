@@ -17,7 +17,7 @@ typedef struct{
 } AREALIST;
 
 typedef struct{
-    enum { CTeSP, Bachelor, Master, Doctorate } type;
+    //enum { CTeSP, Bachelor, Master, Doctorate } type;
     char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
