@@ -3,7 +3,7 @@ ORGANIZATION; ORGANIC UNIT; SCHOOL
 */
 
 #ifndef ORG_H
-#define ORG_h
+#define ORG_H
 
 #define ACRONYM_CHAR_SIZE 6
 #define DESIGNATION_CHAR_SIZE 51
@@ -20,5 +20,9 @@ typedef struct{
 } UNITLIST;
 
 UNITLIST createUnitList();
+UNIT* getUnit(UNITLIST *unitList ,unsigned short id);
+const char* getUnitAcronym(UNITLIST *, unsigned short id);
+char getUnitDesignation(unsigned short id);
+void listUnits(UNITLIST*);
 
 #endif
