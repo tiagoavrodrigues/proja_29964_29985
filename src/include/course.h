@@ -6,6 +6,11 @@
 #define DESCRIPTION_MAX_CHAR 101
 #define CODE_MAX_CHAR 9
 
+typedef enum{
+    Closed,
+    Open
+}eState;
+
 typedef struct{
     unsigned short id;
     char description[DESCRIPTION_MAX_CHAR];
@@ -22,7 +27,7 @@ typedef struct{
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
     UNIT school;
-    enum { Closed, Open } status;
+    eState state;
 } HCOURSE; //Higher Course
 
 typedef struct hcourselist{
@@ -40,6 +45,9 @@ AREALIST createAreaList();
 AREA* getArea(AREA*, unsigned short id);
 void listAreas(AREALIST*);
 HCOURSELIST createHCourseList(AREA*, UNIT*);
+COURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
+void setHCourseState(HCOURSE *course, eState newState);
 void listHCourses(HCOURSELIST*);
+void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
 
 #endif
