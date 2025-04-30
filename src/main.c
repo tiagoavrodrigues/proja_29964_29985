@@ -19,6 +19,8 @@ int main(int argc, char *argv[]){
     listAreas(&areaList);
     listUnits(&unitList);
     listHCourses(&hcourseList);
+    setHCoursestate(getHCourse(&hcourseList, "CTESP001"), Closed);
+    listHCoursesByUnit(&hcourseList, 0);
     free(hcourseList.items);
     return 0;
 }
