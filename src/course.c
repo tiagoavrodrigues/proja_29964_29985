@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "include/course.h"
 #include "include/org.h"
 #include "include/utils.h"
@@ -105,28 +106,81 @@ HCOURSELIST createHCourseList(AREA *areas, UNIT *units) {
 }
 
 
-void listHCourses(HCOURSELIST *hcourselist){
-    if (hcourselist == NULL || !hcourselist->count || hcourselist->items == NULL) {
+COURSE* getHCourse(HCOURSELIST *hcourseList, unsigned char code[]){
+    if(hcourseList == NULL || !hcourseList->count || code == NULL || code[0] == '\0'){
+        return NULL;
+    }
+
+    for(unsigned short i = 0; i < hcourseList->count; i++){
+        if(strcmp(hcourseList->items->code, code) == 0) return &(hcourseList->items[i]); 
+    }
+
+    return NULL;
+}
+
+void listHCourses(HCOURSELIST *hcourseList){
+    if (hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL) {
         return;
     }
 
     printf(
         "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
-        "| Code      | Course Description                              | Area                                | School | Status |\n"
+        "| Code      | Course Description                              | Area                                | School | State  |\n"
         "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
     );
-    for (unsigned short i = 0; i < hcourselist->count; i++) {
+    for (unsigned short i = 0; i < hcourseList->count; i++) {
         printf(
             "| %-9s | ",
-            hcourselist->items[i].code
+            hcourseList->items[i].code
         );
-        printFixedWidth(hcourselist->items[i].description, ' ', 46); 
+        printFixedWidth(hcourseList->items[i].description, ' ', 46); 
         printf(" | ");
-        printFixedWidth(hcourselist->items[i].area.description, ' ', 34); 
+        printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
         printf(" | %-6s | %-6s |\n",
-            hcourselist->items[i].school.acronym,
-            hcourselist->items[i].status == Open ? "Open" : "Closed"
+            hcourseList->items[i].school.acronym,
+            hcourseList->items[i].state == Open ? "Open" : "Closed"
         );
     }
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
+}
+
+void listHCoursesAsc(HCOURSELIST *hcourseList){
+
+}
+
+void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
+    if (hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL) {
+        return;
+    }
+
+    printf(
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
+        "| Code      | Course Description                              | Area                                | School | State  |\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
+    );
+    
+    for (unsigned short i = 0; i < hcourseList->count; i++) {
+        if(hcourseList->items[i].school.id == unitID){
+            printf(
+                "| %-9s | ",
+                hcourseList->items[i].code
+            );
+            printFixedWidth(hcourseList->items[i].description, ' ', 46); 
+            printf(" | ");
+            printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
+            printf(" | %-6s | %-6s |\n",
+                hcourseList->items[i].school.acronym,
+                hcourseList->items[i].state == Open ? "Open" : "Closed"
+            );
+        }
+    }
+    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
+}
+
+void setHCourseState(HCOURSE *course, eState newState){
+    if (course == NULL) {
+        return;
+    }
+
+    course->state = newState;
 }
