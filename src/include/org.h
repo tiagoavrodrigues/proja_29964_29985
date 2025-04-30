@@ -10,7 +10,7 @@ ORGANIZATION; ORGANIC UNIT; SCHOOL
 
 typedef struct{
     unsigned short id;
-    char acronym[ACRONYM_CHAR_SIZE];
+    unsigned char acronym[ACRONYM_CHAR_SIZE];
     char designation[DESIGNATION_CHAR_SIZE];
 } UNIT;
 
