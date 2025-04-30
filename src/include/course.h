@@ -12,13 +12,13 @@ typedef struct{
 } AREA;
 
 typedef struct{
-    unsigned char count;
+    unsigned short count;
     AREA *items;
 } AREALIST;
 
 typedef struct{
     enum { CTeSP, Bachelor, Master, Doctorate } type;
-    char code[CODE_MAX_CHAR];
+    unsigned char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
     UNIT school;
@@ -31,7 +31,7 @@ typedef struct hcourselist{
 }HCOURSELIST;
 
 typedef struct{
-    char code[CODE_MAX_CHAR];
+    unsigned char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
 } COURSE;
