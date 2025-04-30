@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -19,4 +20,26 @@ void clearBuffer(){
 void pause(){
     printf("\nPrima Enter para continuar...");
     getchar();
+}
+
+void printFixedWidth(char string[], char fillerChar, unsigned short width){
+    if(string == NULL || string[0] == '\0') return;
+
+    unsigned short strLength = 0;
+    unsigned short specialCharCount = 0;
+    for(strLength = 0; strLength < width && string[strLength] != '\0'; strLength++){
+        if(string[strLength] < 0) specialCharCount++;
+    }
+
+    if(specialCharCount >= 2) specialCharCount /= 2; // dois caracteres especiais equivalem a um caracter de output
+
+    unsigned short printedChars = 0;
+    for(unsigned short i = 0; i < width && i <= strLength; i++){
+        putchar(string[i]);
+        printedChars++;
+    }
+
+    for(unsigned short i = strLength - specialCharCount; i <= width; i++){
+        putchar(fillerChar);
+    }
 }
