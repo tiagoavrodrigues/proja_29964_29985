@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "include/org.h"
+#include "include/utils.h"
 
 #define UNIT_ELEMENT_QUANTITY 6
 
@@ -39,17 +40,17 @@ void listUnits(UNITLIST *unitList){
 
     printf(
         "+-----+----------+------------------------------------------+\n"
-        "| ID  | Acronym  | Designation                               \n"
+        "| ID  | Acronym  | Designation                              | \n"
         "+-----+----------+------------------------------------------+\n"
     );
     for (unsigned short i = 0; i < unitList->count; i++) {
         printf(
-            "| %3d | %-8.8s | %-42.42s  \n",
+            "| %3d | %-8.8s | ",
             unitList->items[i].id,
-            unitList->items[i].acronym,
-            unitList->items[i].designation
+            unitList->items[i].acronym
         );
+        printFixedWidth(unitList->items[i].designation, ' ', 39);
+        printf(" |\n");
     }
     printf("+-----+----------+------------------------------------------+\n");
-    return;
 }
