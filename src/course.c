@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "include/course.h"
 #include "include/org.h"
+#include "include/utils.h"
 
 #define AREA_ITEM_QUANTITY 22
-#define HCOURSE_ITEM_QUANTITY 32
+#define HCOURSE_ITEM_QUANTITY 26
 
 AREALIST createAreaList(){
 
@@ -47,18 +48,19 @@ void listAreas(AREALIST *areaList){
     }
     printf(
         "+-----+--------------------------------------------+\n"
-        "| ID  | Area Description                            \n"
+        "| ID  | Area Description                           |\n"
         "+-----+--------------------------------------------+\n"
     );
     for (unsigned short i = 0; i < areaList->count; i++) {
         printf(
-            "| % 3d | %-42.42s \n",
+            "| % 3d | ",
             areaList->items[i].id,
             areaList->items[i].description
         );
+        printFixedWidth(areaList->items[i].description, ' ', 42);
+        printf("|\n");
     }
     printf("+-----+--------------------------------------------+\n");
-    return;
 }
 
 HCOURSELIST createHCourseList(AREA *areas, UNIT *units) {
@@ -109,22 +111,22 @@ void listHCourses(HCOURSELIST *hcourselist){
     }
 
     printf(
-        "+-----------+-------------------------------------------------+-------------------------------+--------+--------+\n"
-        "| Code      | Course Description                              | Area                          | School | Status |\n"
-        "+-----------+-------------------------------------------------+-------------------------------+--------+--------+\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
+        "| Code      | Course Description                              | Area                                | School | Status |\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
     );
     for (unsigned short i = 0; i < hcourselist->count; i++) {
         printf(
-            "| %-9s | %-47.47s | %-29.29s | %-6s | %-6s |\n",
-            hcourselist->items[i].code,
-            hcourselist->items[i].description,
-            hcourselist->items[i].area.description,
+            "| %-9s | ",
+            hcourselist->items[i].code
+        );
+        printFixedWidth(hcourselist->items[i].description, ' ', 46); 
+        printf(" | ");
+        printFixedWidth(hcourselist->items[i].area.description, ' ', 34); 
+        printf(" | %-6s | %-6s |\n",
             hcourselist->items[i].school.acronym,
             hcourselist->items[i].status == Open ? "Open" : "Closed"
         );
     }
-    printf(
-        "+-----------+-------------------------------------------------+-------------------------------+--------+--------+\n"
-    );
-    return;
+    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
 }
