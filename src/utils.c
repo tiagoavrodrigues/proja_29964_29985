@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "include/utils.h"
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -52,4 +53,20 @@ void printFixedWidth(char string[], char fillerChar, unsigned short width){
     for(unsigned short i = strLength - specialCharCount; i <= width; i++){
         putchar(fillerChar);
     }
+}
+
+void printColored(char string[], eColor color, unsigned short width){
+    if(string == NULL || string[0] == '\0') return;
+
+    switch(color){
+        case Red: printf(RED); break;
+        case Green: printf(GREEN); break;
+        case Blue: printf(BLUE); break;
+        case Yellow: printf(YELLOW); break;
+    }
+
+    printFixedWidth(string, ' ', width);
+
+    printf(RESET);
+
 }
