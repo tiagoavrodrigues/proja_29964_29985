@@ -5,10 +5,6 @@
 #include "include/org.h"
 #include "include/utils.h"
 
-#define COURSEFILENAME "data/hcourse.dat"
-#define AREA_ITEM_QUANTITY 22
-#define HCOURSE_ITEM_QUANTITY 30
-
 AREALIST createAreaList(){
 
     static const AREA items[AREA_ITEM_QUANTITY] = {
@@ -140,7 +136,6 @@ short addHCourse(HCOURSELIST *hcourseList, HCOURSE newCourse){
 
     HCOURSE *newItems = realloc(hcourseList->items, (hcourseList->count + 1) * sizeof(HCOURSE));
     if (newItems == NULL) {
-        printColored("\nOut of Memory!\n", Red, 0);
         return -1;
     }
 
@@ -262,7 +257,7 @@ void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
 short saveHCourseData(HCOURSELIST *hcourseList){
     FILE *fp;
 
-    if((fp = fopen(COURSEFILENAME, "rb")) == NULL){
+    if((fp = fopen(COURSE_FILENAME, "rb")) == NULL){
         return -1;
     };
 
@@ -276,7 +271,7 @@ short saveHCourseData(HCOURSELIST *hcourseList){
 short loadHCourseData(HCOURSELIST *hcourseList){
     FILE *fp;
 
-    if((fp = fopen(COURSEFILENAME, "rb")) == NULL){
+    if((fp = fopen(COURSE_FILENAME, "rb")) == NULL){
         return - 1;
     };
 
