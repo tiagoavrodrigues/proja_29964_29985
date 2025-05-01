@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "include/applicant.h"
 #include "include/user.h"
 
@@ -19,11 +20,9 @@ int isValidDate(unsigned short day, unsigned short month, unsigned short year){
 APPLICANT* getApplicant(APPLICANTLIST applicantList, USER loggedUser){
     if(applicantList.count == 0) return NULL;
 
-    APPLICANT applicants[] = applicantList.applicants;
-
     for(unsigned int i = 0; i < applicantList.count; i++){
-        if(strcmp(applicants[i].user.username, loggedUser.username) == 0
-            && strcmp(applicants[i].user.password, loggedUser.password) == 0) return &applicants[i];
+        if(strcmp(applicantList.applicants[i].user.username, loggedUser.username) == 0
+            && strcmp(applicantList.applicants[i].user.password, loggedUser.password) == 0) return &applicantList.applicants[i];
     }
 
     return NULL;
