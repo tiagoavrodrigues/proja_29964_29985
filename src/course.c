@@ -111,44 +111,55 @@ HCOURSELIST createHCourseList(AREA *areas, UNIT *units) {
 }
 
 
-COURSE* getHCourse(HCOURSELIST *hcourseList, unsigned char code[]){
+HCOURSE* getHCourse(HCOURSELIST *hcourseList, unsigned char code[]){
     if(hcourseList == NULL || !hcourseList->count || code == NULL || code[0] == '\0'){
         return NULL;
     }
 
     for(unsigned short i = 0; i < hcourseList->count; i++){
-        if(strcmp(hcourseList->items->code, code) == 0) return &(hcourseList->items[i]); 
+        if(strcmp(hcourseList->items[i].code, code) == 0) return &(hcourseList->items[i]); 
     }
 
     return NULL;
 }
 
-void setHCourseState(HCOURSE *course, eState newState){
+short setHCourseState(HCOURSE *course, eState newState){
     if (course == NULL) {
-        return;
+        return -1;
     }
 
     course->state = newState;
+    return 0;
 }
 
-void addHCourse(HCOURSELIST *hcourseList, HCOURSE newCourse){
+short addHCourse(HCOURSELIST *hcourseList, HCOURSE newCourse){
     if(hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL){
-        return;
+        return -1;
     }
 
     HCOURSE *newItems = realloc(hcourseList->items, (hcourseList->count + 1) * sizeof(HCOURSE));
     if (newItems == NULL) {
         printColored("\nOut of Memory!\n", Red, 0);
-        pause();
-        return;
+        return -1;
     }
 
     hcourseList->items = newItems;
     
     hcourseList->items[hcourseList->count] = newCourse;
     hcourseList->count++;
+
+    return 0;
 }
 
+short editHCourse(HCOURSE *hcourse, HCOURSE newCourseInfo){
+    if(hcourse == NULL){
+        return -1;
+    }
+
+    *hcourse = newCourseInfo;
+   
+    return 0;    
+}
 
 void listHCourses(HCOURSELIST *hcourseList){
     if (hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL) {
