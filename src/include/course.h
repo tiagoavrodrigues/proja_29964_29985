@@ -50,6 +50,7 @@ short setHCourseState(HCOURSE *hcourse, eState newState);
 short addHCourse(HCOURSELIST*, HCOURSE newCourse);
 short editHCourse(HCOURSE *hcourse, HCOURSE newCourseInfo);
 void listHCourses(HCOURSELIST*);
+void listHCoursesAsc(HCOURSELIST *hcourseList);
 void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
 
 #endif
