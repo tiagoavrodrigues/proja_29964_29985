@@ -25,6 +25,7 @@ int main(int argc, char *argv[]){
     listHCourses(&hcourseList);
     setHCourseState(getHCourse(&hcourseList, "CTESP001"), Closed);
     addHCourse(&hcourseList, (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
+    editHCourse(getHCourse(&hcourseList, "CTESP000"), (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste Alterado", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
     listHCoursesByUnit(&hcourseList, 0);
 
 
