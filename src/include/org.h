@@ -20,9 +20,7 @@ typedef struct unitlist{
 } UNITLIST;
 
 UNITLIST createUnitList();
-UNIT* getUnit(UNIT *units ,unsigned short id);
-const char* getUnitAcronym(UNITLIST *, unsigned short id);
-char getUnitDesignation(unsigned short id);
-void listUnits(UNITLIST*);
+UNIT getUnit(UNIT units[] ,unsigned short id);
+void listUnits(UNITLIST);
 
 #endif
