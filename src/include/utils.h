@@ -16,7 +16,7 @@ typedef enum eColor{
     Green,
     Yellow,
     Blue
-}eColor;
+} eColor;
 
 void clearScreen();
 void clearBuffer();
