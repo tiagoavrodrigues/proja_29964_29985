@@ -26,6 +26,11 @@ typedef struct applicant{
     float mean;
 } APPLICANT;
 
+typedef struct applicantlist{
+    unsigned short count;
+    APPLICANT *applicants;
+} APPLICANTLIST;
+
 int isValidDate(unsigned short day, unsigned short month, unsigned short year);
 
 #endif
