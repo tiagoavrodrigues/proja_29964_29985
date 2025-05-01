@@ -45,9 +45,10 @@ AREALIST createAreaList();
 AREA* getArea(AREA*, unsigned short id);
 void listAreas(AREALIST*);
 HCOURSELIST createHCourseList(AREA*, UNIT*);
-COURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
-void setHCourseState(HCOURSE *course, eState newState);
-void addHCourse(HCOURSELIST*, HCOURSE newCourse);
+HCOURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
+short setHCourseState(HCOURSE *hcourse, eState newState);
+short addHCourse(HCOURSELIST*, HCOURSE newCourse);
+short editHCourse(HCOURSE *hcourse, HCOURSE newCourseInfo);
 void listHCourses(HCOURSELIST*);
 void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
 
