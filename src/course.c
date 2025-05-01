@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "include/course.h"
 #include "include/org.h"
 #include "include/utils.h"
@@ -118,6 +119,26 @@ COURSE* getHCourse(HCOURSELIST *hcourseList, unsigned char code[]){
     return NULL;
 }
 
+void setHCourseState(HCOURSE *course, eState newState){
+    if (course == NULL) {
+        return;
+    }
+
+    course->state = newState;
+}
+
+void addHCourse(HCOURSELIST *hcourseList, COURSE newCourse){
+    if(hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL){
+        return;
+    }
+
+    hcourseList->items = (HCOURSE *) realloc(hcourseList->items, hcourseList->count * sizeof(HCOURSE));
+    if(hcourseList->items == NULL){
+        printf("\nOut of memory!\n");
+    }
+}
+
+
 void listHCourses(HCOURSELIST *hcourseList){
     if (hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL) {
         return;
@@ -138,7 +159,7 @@ void listHCourses(HCOURSELIST *hcourseList){
         printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
         printf(" | %-6s | %-6s |\n",
             hcourseList->items[i].school.acronym,
-            hcourseList->items[i].state == Open ? "Open" : "Closed"
+            hcourseList->items[i].state == Open ? "\033[1;32mOpen\033[0m  " : "\033[1;31mClosed\033[0m"
         );
     }
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
@@ -170,17 +191,10 @@ void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
             printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
             printf(" | %-6s | %-6s |\n",
                 hcourseList->items[i].school.acronym,
-                hcourseList->items[i].state == Open ? "Open" : "Closed"
+                hcourseList->items[i].state == Open ? "\033[1;32mOpen\033[0m  " : "\033[1;31mClosed\033[0m"
             );
         }
     }
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
 }
 
-void setHCourseState(HCOURSE *course, eState newState){
-    if (course == NULL) {
-        return;
-    }
-
-    course->state = newState;
-}
