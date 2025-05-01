@@ -192,7 +192,37 @@ void listHCourses(HCOURSELIST *hcourseList){
 }
 
 void listHCoursesAsc(HCOURSELIST *hcourseList){
+    HCOURSE *sortedList = (HCOURSE *) calloc(hcourseList->count, sizeof(HCOURSE));
 
+    if(sortedList == NULL){
+        printColored("\nOut of memory!\n", Red, 0);
+        return;
+    }
+
+    for(unsigned short i = 0; i < hcourseList->count; i++){
+        sortedList[i] = hcourseList->items[i];
+    }
+
+    HCOURSE aux = {};
+
+    unsigned short sorted = 0;
+    for(unsigned short i = 0; i < hcourseList->count && !sorted; i++){
+        sorted = 1;
+        for(unsigned short j = 0; j < hcourseList->count - i - 1; j++){
+            if(strcmp(sortedList[j].description, sortedList[j + 1].description) > 0){
+                aux = sortedList[j + 1];
+                sortedList[j + 1] = sortedList[j];
+                sortedList[j] = aux;
+                sorted = 0;
+            }
+        }
+    }
+
+
+    HCOURSELIST newList = (HCOURSELIST) { hcourseList->count, (HCOURSE *) sortedList};
+
+    listHCourses(&newList);
+    free(sortedList);
 }
 
 void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
