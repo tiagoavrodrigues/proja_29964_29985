@@ -7,6 +7,10 @@
 int main(int argc, char *argv[]){
     setlocale(LC_ALL, "");
 
+    #ifdef _WIN32
+    enableANSI();  // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WINDOWS
+    #endif
+
     clearScreen();
     AREALIST areaList = createAreaList();
     UNITLIST unitList = createUnitList();
@@ -19,8 +23,14 @@ int main(int argc, char *argv[]){
     listAreas(&areaList);
     listUnits(&unitList);
     listHCourses(&hcourseList);
-    setHCoursestate(getHCourse(&hcourseList, "CTESP001"), Closed);
+    setHCourseState(getHCourse(&hcourseList, "CTESP001"), Closed);
     listHCoursesByUnit(&hcourseList, 0);
+
+
+    printf("\033[1;31mThis text is red.\033[0m\n");
+    printf("\033[1;32mThis text is green.\033[0m\n");
+    printf("\033[1;34mThis text is blue.\033[0m\n");
     free(hcourseList.items);
+
     return 0;
 }
