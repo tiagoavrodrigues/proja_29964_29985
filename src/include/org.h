@@ -8,13 +8,13 @@ ORGANIZATION; ORGANIC UNIT; SCHOOL
 #define ACRONYM_CHAR_SIZE 6
 #define DESIGNATION_CHAR_SIZE 51
 
-typedef struct{
+typedef struct unit{
     unsigned short id;
     unsigned char acronym[ACRONYM_CHAR_SIZE];
     char designation[DESIGNATION_CHAR_SIZE];
 } UNIT;
 
-typedef struct{
+typedef struct unitlist{
     unsigned short count;
     UNIT *items;
 } UNITLIST;
