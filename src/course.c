@@ -157,10 +157,14 @@ void listHCourses(HCOURSELIST *hcourseList){
         printFixedWidth(hcourseList->items[i].description, ' ', 46); 
         printf(" | ");
         printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
-        printf(" | %-6s | %-6s |\n",
-            hcourseList->items[i].school.acronym,
-            hcourseList->items[i].state == Open ? "\033[1;32mOpen\033[0m  " : "\033[1;31mClosed\033[0m"
-        );
+            printf(
+                " | %-6s | ",
+                hcourseList->items[i].school.acronym
+            );
+            
+        hcourseList->items[i].state == Open ? printColored("Open", Green, 6) : printColored("Closed", Red, 6);
+        
+        printf("|\n");
     }
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
 }
@@ -189,10 +193,14 @@ void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
             printFixedWidth(hcourseList->items[i].description, ' ', 46); 
             printf(" | ");
             printFixedWidth(hcourseList->items[i].area.description, ' ', 34); 
-            printf(" | %-6s | %-6s |\n",
-                hcourseList->items[i].school.acronym,
-                hcourseList->items[i].state == Open ? "\033[1;32mOpen\033[0m  " : "\033[1;31mClosed\033[0m"
+            printf(
+                " | %-6s | ",
+                hcourseList->items[i].school.acronym
             );
+                
+            hcourseList->items[i].state == Open ? printColored("Open", Green, 6) : printColored("Closed", Red, 6);
+            
+            printf("|\n");
         }
     }
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
