@@ -14,7 +14,10 @@ int main(int argc, char *argv[]){
     clearScreen();
     AREALIST areaList = createAreaList();
     UNITLIST unitList = createUnitList();
-    HCOURSELIST hcourseList = createHCourseList(areaList.items, unitList.items);
+    HCOURSELIST hcourseList = {};
+
+    if(loadHCourseData(&hcourseList) < 0) hcourseList = createHCourseList(areaList.items, unitList.items);
+
     if(hcourseList.items == NULL){
         printf("\nOut of memory!\n");
         return -1;
@@ -29,6 +32,7 @@ int main(int argc, char *argv[]){
     listHCoursesByUnit(&hcourseList, 0);
     listHCoursesAsc(&hcourseList);
 
+    saveHCourseData(&hcourseList);
 
     printf("\033[1;31mThis text is red.\033[0m\n");
     printf("\033[1;32mThis text is green.\033[0m\n");
