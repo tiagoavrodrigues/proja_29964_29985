@@ -6,6 +6,11 @@
 #define DESCRIPTION_MAX_CHAR 101
 #define CODE_MAX_CHAR 9
 
+#define AREA_ITEM_QUANTITY 22
+#define HCOURSE_ITEM_QUANTITY 30
+
+#define COURSE_FILENAME "data/hcourse.dat"
+
 typedef enum estate{
     Closed,
     Open
