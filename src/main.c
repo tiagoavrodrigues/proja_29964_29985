@@ -4,6 +4,8 @@
 #include "include/utils.h"
 #include "include/course.h"
 #include "include/text.h"
+#include "include/user.h"
+
 int main(int argc, char *argv[]){
     setlocale(LC_ALL, "");
 
@@ -15,6 +17,8 @@ int main(int argc, char *argv[]){
     AREALIST areaList = createAreaList();
     UNITLIST unitList = createUnitList();
     HCOURSELIST hcourseList = {};
+
+    USERLIST userList = createUserList();
 
     if(loadHCourseData(&hcourseList) < 0) hcourseList = createHCourseList(areaList.items, unitList.items);
 
@@ -37,6 +41,8 @@ int main(int argc, char *argv[]){
     printf("\033[1;31mThis text is red.\033[0m\n");
     printf("\033[1;32mThis text is green.\033[0m\n");
     printf("\033[1;34mThis text is blue.\033[0m\n");
+
+    free(userList.users);
     free(hcourseList.items);
 
     return 0;
