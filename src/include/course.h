@@ -6,36 +6,36 @@
 #define DESCRIPTION_MAX_CHAR 101
 #define CODE_MAX_CHAR 9
 
-typedef enum{
+typedef enum estate{
     Closed,
     Open
-}eState;
+} eState;
 
-typedef struct{
+typedef struct area{
     unsigned short id;
     char description[DESCRIPTION_MAX_CHAR];
 } AREA;
 
-typedef struct{
+typedef struct arealist{
     unsigned short count;
     AREA *items;
 } AREALIST;
 
-typedef struct{
+typedef struct hcourse{
     enum { CTeSP, Bachelor, Master, Doctorate } type;
     unsigned char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
     UNIT school;
     eState state;
-} HCOURSE; //Higher Course
+}HCOURSE; //Higher Course
 
 typedef struct hcourselist{
     unsigned short count;
     HCOURSE *items;
-}HCOURSELIST;
+} HCOURSELIST;
 
-typedef struct{
+typedef struct course{
     unsigned char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
     AREA area;
@@ -47,7 +47,7 @@ void listAreas(AREALIST*);
 HCOURSELIST createHCourseList(AREA*, UNIT*);
 COURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
 void setHCourseState(HCOURSE *course, eState newState);
-void addHCourse(HCOURSELIST*, COURSE newCourse);
+void addHCourse(HCOURSELIST*, HCOURSE newCourse);
 void listHCourses(HCOURSELIST*);
 void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
 
