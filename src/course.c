@@ -6,7 +6,7 @@
 #include "include/utils.h"
 
 #define AREA_ITEM_QUANTITY 22
-#define HCOURSE_ITEM_QUANTITY 26
+#define HCOURSE_ITEM_QUANTITY 30
 
 AREALIST createAreaList(){
 
@@ -74,34 +74,38 @@ HCOURSELIST createHCourseList(AREA *areas, UNIT *units) {
     hcourses[i++] = (HCOURSE) { CTeSP, "CTESP001", "Gestão Hoteleira", *getArea(areas, 4), *getUnit(units, 0), Open };
     hcourses[i++] = (HCOURSE) { CTeSP, "CTESP002", "Construção e Reabilitação", *getArea(areas, 10), *getUnit(units, 0), Open };
     hcourses[i++] = (HCOURSE) { CTeSP, "CTESP003", "Desenvolvimento Web e Multimédia", *getArea(areas, 9), *getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP004", "Impressão 3D e Maquinação Automática", *getArea(areas, 10), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP004", "Impressão 3D e Maquinação Automática", *getArea(areas, 10), *getUnit(units, 0), Closed };
     hcourses[i++] = (HCOURSE) { CTeSP, "CTESP005", "Manutenção Mecânica", *getArea(areas, 10), *getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP006", "Mecatrónica", *getArea(areas, 10), *getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP007", "Sistemas Elétricos de Energia", *getArea(areas, 10), *getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP008", "Sistemas Eletrónicos e Computadores", *getArea(areas, 10), *getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP009", "Tecnologias e Programação de Sistemas de Informação", *getArea(areas, 9), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP006", "Manutenção Automóvel", *getArea(areas, 10), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP007", "Mecatrónica", *getArea(areas, 10), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP008", "Sistemas Elétricos de Energia", *getArea(areas, 10), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP009", "Sistemas Eletrónicos e Computadores", *getArea(areas, 10), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP010", "Tecnologias e Programação de Sistemas de Informação", *getArea(areas, 9), *getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP011", "Turismo de Gastronomia e Vinhos", *getArea(areas, 21), *getUnit(units, 0), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP010", "Terapias Termais e Bem-Estar", *getArea(areas, 15), *getUnit(units, 1), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP012", "Termalismo e Bem-Estar", *getArea(areas, 15), *getUnit(units, 1), Open };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP011", "Arte e Fabricação Digital", *getArea(areas, 0), *getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP012", "Artes e Tecnologia [Luz, Som e Imagem]", *getArea(areas, 0), *getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP013", "Ilustração e Produção Gráfica", *getArea(areas, 0), *getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP014", "Intervenção Educativa em Creche", *getArea(areas, 1), *getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP015", "Intervenção Sociocomunitária e Envelhecimento", *getArea(areas, 21), *getUnit(units, 2), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP013", "Arte e Fabricação Digital", *getArea(areas, 0), *getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP014", "Artes e Tecnologia [Luz, Som e Imagem]", *getArea(areas, 0), *getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP015", "Ilustração e Produção Gráfica", *getArea(areas, 0), *getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP016", "Intervenção Educativa em Creche", *getArea(areas, 1), *getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP017", "Intervenção Sociocomunitária e Envelhecimento", *getArea(areas, 1), *getUnit(units, 2), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP018", "Serviços Educativos e Património Local", *getArea(areas, 21), *getUnit(units, 2), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP016", "Treino Desportivo", *getArea(areas, 15), *getUnit(units, 3), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP017", "Trabalhos em Altura e Acesso por Cordas", *getArea(areas, 10), *getUnit(units, 3), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP019", "Treino Desportivo", *getArea(areas, 15), *getUnit(units, 3), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP020", "Trabalhos em Altura e Acesso por Cordas", *getArea(areas, 10), *getUnit(units, 3), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP018", "Cuidados Veterinários", *getArea(areas, 14), *getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP019", "Fruticultura, Viticultura e Enologia", *getArea(areas, 13), *getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP020", "Gestão de Empresas Agrícolas", *getArea(areas, 13), *getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP021", "Indústrias Biotecnológicas", *getArea(areas, 6), *getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP022", "Riscos e Proteção Civil", *getArea(areas, 20), *getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP023", "Turismo Rural e de Natureza", *getArea(areas, 4), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP021", "Cuidados Veterinários", *getArea(areas, 14), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP022", "Fruticultura, Viticultura e Enologia", *getArea(areas, 13), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP023", "Gestão de Empresas Agrícolas", *getArea(areas, 13), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP024", "Indústrias Biotecnológicas", *getArea(areas, 6), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP025", "Riscos e Proteção Civil", *getArea(areas, 20), *getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP026", "Turismo Rural e de Natureza", *getArea(areas, 4), *getUnit(units, 4), Open };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP024", "Contabilidade e Gestão para PME", *getArea(areas, 4), *getUnit(units, 5), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP025", "Marketing Digital e E-Commerce", *getArea(areas, 4), *getUnit(units, 5), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP026", "Transportes e Logística", *getArea(areas, 4), *getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP027", "Contabilidade e Gestão para PME", *getArea(areas, 4), *getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP028", "Marketing Digital e E-Commerce", *getArea(areas, 4), *getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP029", "Gestão e Melhoria Contínua das Empresas", *getArea(areas, 4), *getUnit(units, 5), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP030", "Transportes e Logística", *getArea(areas, 4), *getUnit(units, 5), Open };
 
     return (HCOURSELIST) {HCOURSE_ITEM_QUANTITY, (HCOURSE *) hcourses};
 }
@@ -127,15 +131,22 @@ void setHCourseState(HCOURSE *course, eState newState){
     course->state = newState;
 }
 
-void addHCourse(HCOURSELIST *hcourseList, COURSE newCourse){
+void addHCourse(HCOURSELIST *hcourseList, HCOURSE newCourse){
     if(hcourseList == NULL || !hcourseList->count || hcourseList->items == NULL){
         return;
     }
 
-    hcourseList->items = (HCOURSE *) realloc(hcourseList->items, hcourseList->count * sizeof(HCOURSE));
-    if(hcourseList->items == NULL){
-        printf("\nOut of memory!\n");
+    HCOURSE *newItems = realloc(hcourseList->items, (hcourseList->count + 1) * sizeof(HCOURSE));
+    if (newItems == NULL) {
+        printColored("\nOut of Memory!\n", Red, 0);
+        pause();
+        return;
     }
+
+    hcourseList->items = newItems;
+    
+    hcourseList->items[hcourseList->count] = newCourse;
+    hcourseList->count++;
 }
 
 
