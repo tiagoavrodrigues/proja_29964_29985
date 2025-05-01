@@ -5,6 +5,7 @@
 #include "include/org.h"
 #include "include/utils.h"
 
+#define COURSEFILENAME "data/hcourse.dat"
 #define AREA_ITEM_QUANTITY 22
 #define HCOURSE_ITEM_QUANTITY 30
 
@@ -258,3 +259,33 @@ void listHCoursesByUnit(HCOURSELIST *hcourseList, unsigned short unitID){
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
 }
 
+short saveHCourseData(HCOURSELIST *hcourseList){
+    FILE *fp;
+
+    if((fp = fopen(COURSEFILENAME, "rb")) == NULL){
+        return -1;
+    };
+
+    fwrite(&hcourseList->count, sizeof(unsigned short), 1, fp);
+    fwrite(hcourseList->items, sizeof(HCOURSE), hcourseList->count, fp);
+
+    fclose(fp);
+    return 0;
+}
+
+short loadHCourseData(HCOURSELIST *hcourseList){
+    FILE *fp;
+
+    if((fp = fopen(COURSEFILENAME, "rb")) == NULL){
+        return - 1;
+    };
+
+    fread(&hcourseList->count, sizeof(unsigned short), 1, fp);
+
+    hcourseList->items = (HCOURSE *) calloc(hcourseList->count, sizeof(HCOURSE));
+
+    fread(hcourseList->items, sizeof(HCOURSE), hcourseList->count, fp);
+
+    fclose(fp);
+    return 0;
+}
