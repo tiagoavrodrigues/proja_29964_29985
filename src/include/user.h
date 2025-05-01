@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-typedef struct{
+typedef struct user{
     enum { Admin, Applicant } type;
     unsigned char username[21];
     unsigned char password[21];
