@@ -47,6 +47,7 @@ void listAreas(AREALIST*);
 HCOURSELIST createHCourseList(AREA*, UNIT*);
 COURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
 void setHCourseState(HCOURSE *course, eState newState);
+void addHCourse(HCOURSELIST*, COURSE newCourse);
 void listHCourses(HCOURSELIST*);
 void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
 
