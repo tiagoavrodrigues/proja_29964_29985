@@ -1,9 +1,10 @@
 *.json
-build/*
-data/*
+src/build/*
+src/data/*
 docs/*
-!build/
-!data/
+!src/build/
+!src/data/
 !docs/
 *.exe
 *.pdb
+src/build/main
