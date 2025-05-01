@@ -8,13 +8,13 @@
 #define YEAR_MAX 2010
 #define NAME_MAX_CHAR 51
 
-typedef struct{
+typedef struct date{
     unsigned short day;
     unsigned short month;
     unsigned short year;
 } DATE;
 
-typedef struct{
+typedef struct applicant{
     USER user;
     char name[NAME_MAX_CHAR];
     char surname[NAME_MAX_CHAR];
