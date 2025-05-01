@@ -16,40 +16,27 @@ UNITLIST createUnitList(){
     return (UNITLIST) {UNIT_ELEMENT_QUANTITY, (UNIT *) units};
 }
 
-UNIT* getUnit(UNIT *units ,unsigned short id){
-    if(units == NULL || id >= UNIT_ELEMENT_QUANTITY) return NULL;
+UNIT getUnit(UNIT units[] ,unsigned short id){
+    if(units == NULL || id >= UNIT_ELEMENT_QUANTITY) return (UNIT) {};
 
-    return &units[id];
+    return units[id];
 }
 
-const char* getUnitAcronym(UNITLIST *unitList, unsigned short id){
-    if(unitList == NULL || id >= unitList->count || unitList->items == NULL){
-        return NULL;
-    }
-    return unitList->items[id].acronym;
-}
-
-char getUnitDesignation(unsigned short id){
-
-}
-
-void listUnits(UNITLIST *unitList){
-    if(unitList == NULL || !unitList->count || unitList->items == NULL) {
-        return;
-    }
+void listUnits(UNITLIST unitList){
+    if(unitList.count == 0|| unitList.items == NULL) return;
 
     printf(
         "+-----+----------+------------------------------------------+\n"
         "| ID  | Acronym  | Designation                              | \n"
         "+-----+----------+------------------------------------------+\n"
     );
-    for (unsigned short i = 0; i < unitList->count; i++) {
+    for(unsigned short i = 0; i < unitList.count; i++){
         printf(
             "| %3d | %-8.8s | ",
-            unitList->items[i].id,
-            unitList->items[i].acronym
+            unitList.items[i].id,
+            unitList.items[i].acronym
         );
-        printFixedWidth(unitList->items[i].designation, ' ', 39);
+        printFixedWidth(unitList.items[i].designation, ' ', 39);
         printf(" |\n");
     }
     printf("+-----+----------+------------------------------------------+\n");
