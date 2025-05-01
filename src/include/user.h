@@ -18,6 +18,10 @@ typedef struct userlist{
 } USERLIST;
 
 USERLIST createUserList();
-short registerNewUser(USERLIST *userList, USER newUser);
+short authenticateUser(USERLIST userList, USER user);
+short addUser(USERLIST *userList, USER newUser);
+short userExists(USERLIST userList, char username[USERNAME_MAX_CHAR]);
+short saveUserData(USERLIST *userList);
+short loadUserData(USERLIST *userList);
 
 #endif
