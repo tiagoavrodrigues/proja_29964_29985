@@ -47,22 +47,22 @@ typedef struct course{
 } COURSE;
 
 AREALIST createAreaList();
-AREA* getArea(AREA*, unsigned short id);
-void listAreas(AREALIST*);
+AREA getArea(AREA[], unsigned short id);
+void listAreas(AREALIST);
 
 HCOURSELIST createHCourseList(AREA*, UNIT*);
 
-HCOURSE* getHCourse(HCOURSELIST*, unsigned char code[]);
+HCOURSE* getHCourse(HCOURSELIST hcourseList, unsigned char code[]);
 short setHCourseState(HCOURSE *hcourse, eState newState);
 
 short addHCourse(HCOURSELIST*, HCOURSE newCourse);
 short editHCourse(HCOURSE *hcourse, HCOURSE newCourseInfo);
 
-void listHCourses(HCOURSELIST*);
-void listHCoursesAsc(HCOURSELIST *hcourseList);
-void listHCoursesByUnit(HCOURSELIST*, unsigned short unitID);
+void listHCourses(HCOURSELIST);
+void listHCoursesAsc(HCOURSELIST);
+void listHCoursesByUnit(HCOURSELIST, unsigned short unitID);
 
-short loadHCourseData(HCOURSELIST *hcourselist);
-short saveHCourseData(HCOURSELIST *hcourselist);
+short loadHCourseData(HCOURSELIST *hcourseList);
+short saveHCourseData(HCOURSELIST *hcourseList);
 
 #endif
