@@ -27,6 +27,7 @@ int main(int argc, char *argv[]){
     addHCourse(&hcourseList, (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
     editHCourse(getHCourse(&hcourseList, "CTESP000"), (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste Alterado", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
     listHCoursesByUnit(&hcourseList, 0);
+    listHCoursesAsc(&hcourseList);
 
 
     printf("\033[1;31mThis text is red.\033[0m\n");
