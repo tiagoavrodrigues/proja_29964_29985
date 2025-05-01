@@ -5,6 +5,7 @@
 #include "include/course.h"
 #include "include/text.h"
 #include "include/user.h"
+#include "include/applicant.h"
 
 int main(int argc, char *argv[]){
     setlocale(LC_ALL, "");
@@ -19,6 +20,7 @@ int main(int argc, char *argv[]){
     HCOURSELIST hcourseList = {};
 
     USERLIST userList = createUserList();
+    APPLICANTLIST applicantList = {};
 
     if(loadHCourseData(&hcourseList) < 0) hcourseList = createHCourseList(areaList.items, unitList.items);
 
@@ -27,14 +29,14 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
-    listAreas(&areaList);
-    listUnits(&unitList);
-    listHCourses(&hcourseList);
-    setHCourseState(getHCourse(&hcourseList, "CTESP001"), Closed);
-    addHCourse(&hcourseList, (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
-    editHCourse(getHCourse(&hcourseList, "CTESP000"), (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste Alterado", *getArea(areaList.items, 21), *getUnit(unitList.items ,0), Closed});
-    listHCoursesByUnit(&hcourseList, 0);
-    listHCoursesAsc(&hcourseList);
+    listAreas(areaList);
+    listUnits(unitList);
+    listHCourses(hcourseList);
+    setHCourseState(getHCourse(hcourseList, "CTESP001"), Closed);
+    addHCourse(&hcourseList, (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste", getArea(areaList.items, 21), getUnit(unitList.items ,0), Closed});
+    editHCourse(getHCourse(hcourseList, "CTESP000"), (HCOURSE) { CTeSP, "CTESP000", "Curso de Teste Alterado", getArea(areaList.items, 21), getUnit(unitList.items ,0), Closed});
+    listHCoursesByUnit(hcourseList, 0);
+    listHCoursesAsc(hcourseList);
 
     saveHCourseData(&hcourseList);
 
