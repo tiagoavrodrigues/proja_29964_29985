@@ -212,7 +212,7 @@ void listHCoursesAsc(HCOURSELIST hcourseList){
         }
     }
 
-    listHCourses((HCOURSELIST) { hcourseList.count, (HCOURSE *) sortedList});
+    listHCourses((HCOURSELIST) { hcourseList.count, (HCOURSE *) sortedList });
     free(sortedList);
 }
 
