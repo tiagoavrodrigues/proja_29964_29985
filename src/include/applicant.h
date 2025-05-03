@@ -8,7 +8,7 @@
 #define YEAR_MAX 2010
 #define NAME_MAX_CHAR 51
 
-#define APPLICANT_FILENAME "applicant.dat"
+#define APPLICANT_FILENAME "data/applicant.dat"
 
 typedef struct date{
     unsigned short day;
@@ -37,7 +37,7 @@ int isValidDate(unsigned short day, unsigned short month, unsigned short year);
 short addApplicant(APPLICANTLIST *applicantList, APPLICANT newApplicant);
 short editApplicantInfo(APPLICANT *applicantInfo, APPLICANT newInfo);
 
-short saveApplicantData(APPLICANTLIST *applicantList);
+short saveApplicantData(APPLICANTLIST applicantList);
 short loadApplicantData(APPLICANTLIST *applicantList);
 
 #endif

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "include/applicant.h"
 #include "include/user.h"
+#include "include/utils.h"
 
 int isValidDate(unsigned short day, unsigned short month, unsigned short year){
 
@@ -54,15 +55,17 @@ short editApplicantInfo(APPLICANT *applicantInfo, APPLICANT newInfo){
     return 0;
 }
 
-short saveApplicantData(APPLICANTLIST *applicantList){
+short saveApplicantData(APPLICANTLIST applicantList){
     FILE *fp;
 
-    if((fp = fopen(APPLICANT_FILENAME, "rb")) == NULL){
+    if((fp = fopen(APPLICANT_FILENAME, "wb")) == NULL){
+        printColored("\nErro ao abrir o ficheiro " APPLICANT_FILENAME "!", Red, 0);
+        _pause();
         return -1;
     };
 
-    fwrite(&applicantList->count, sizeof(unsigned short), 1, fp);
-    fwrite(applicantList->applicants, sizeof(APPLICANT), applicantList->count, fp);
+    fwrite(&applicantList.count, sizeof(unsigned short), 1, fp);
+    fwrite(applicantList.applicants, sizeof(APPLICANT), applicantList.count, fp);
 
     fclose(fp);
     return 0;
