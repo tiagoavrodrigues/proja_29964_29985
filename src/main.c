@@ -22,11 +22,11 @@ int main(int argc, char *argv[]){
 
     USERLIST userList = createUserList();
     APPLICANTLIST applicantList = {};
-
+    
 
     char* opt[2] = { "A", "B" };
 
-    menuSelect(opt, 0, "wW", "sS", 2, "*", "", ' ', "cls");
+    menuSelect(opt, 0, "wW", "sS", 2, "*", "", ' ', CLEAR);
     
 
     if(loadHCourseData(&hcourseList) < 0) hcourseList = createHCourseList(areaList.items, unitList.items);
