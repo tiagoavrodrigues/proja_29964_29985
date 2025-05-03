@@ -1,10 +1,15 @@
 #ifndef _INTERFACE_UTILS_H
 #define _INTERFACE_UTILS_H
 #include <stdio.h>
+#ifdef _WIN32
+#include <conio.h>
+#else
 #include <termios.h>
 #include <unistd.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
+#ifndef _WIN32
 int getch(void) {
     struct termios oldt, newt;
     int ch;
@@ -16,6 +21,7 @@ int getch(void) {
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
 }
+#endif
 /**
  * @brief uma espécie de menu dropdown
  * 
@@ -64,4 +70,6 @@ unsigned char menuSelect(char*options[],unsigned char res,char*up,char*down,long
         }
     }
 }
+
+
 #endif
