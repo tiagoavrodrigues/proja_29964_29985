@@ -1,8 +1,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#ifdef _WIN32
+#if _WIN32
+#define CLEAR "cls"
 void enableANSI(); // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WINDOWS
+#else
+#define CLEAR "clear"
 #endif
 
 #define RED   "\033[1;31m\0"
@@ -20,7 +23,7 @@ typedef enum eColor{
 
 void clearScreen();
 void clearBuffer();
-void pause();
+void _pause();
 void printFixedWidth(char string[], char fillerChar, unsigned short width);
 void printColored(char string[], eColor color, unsigned short width);
 #endif
