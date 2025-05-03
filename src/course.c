@@ -247,15 +247,17 @@ void listHCoursesByUnit(HCOURSELIST hcourseList, unsigned short unitID){
     printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
 }
 
-short saveHCourseData(HCOURSELIST *hcourseList){
+short saveHCourseData(HCOURSELIST hcourseList){
     FILE *fp;
 
-    if((fp = fopen(COURSE_FILENAME, "rb")) == NULL){
+    if((fp = fopen(COURSE_FILENAME, "wb")) == NULL){
+        printColored("\nErro ao abrir o ficheiro " COURSE_FILENAME "!", Red, 0);
+        _pause();
         return -1;
     };
 
-    fwrite(&hcourseList->count, sizeof(unsigned short), 1, fp);
-    fwrite(hcourseList->items, sizeof(HCOURSE), hcourseList->count, fp);
+    fwrite(&hcourseList.count, sizeof(unsigned short), 1, fp);
+    fwrite(hcourseList.items, sizeof(HCOURSE), hcourseList.count, fp);
 
     fclose(fp);
     return 0;

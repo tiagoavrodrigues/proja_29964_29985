@@ -63,6 +63,6 @@ void listHCoursesAsc(HCOURSELIST);
 void listHCoursesByUnit(HCOURSELIST, unsigned short unitID);
 
 short loadHCourseData(HCOURSELIST *hcourseList);
-short saveHCourseData(HCOURSELIST *hcourseList);
+short saveHCourseData(HCOURSELIST hcourseList);
 
 #endif
