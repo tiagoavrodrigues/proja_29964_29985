@@ -6,6 +6,7 @@
 #include "include/text.h"
 #include "include/user.h"
 #include "include/applicant.h"
+#include "include/interface_utils.h"
 
 int main(int argc, char *argv[]){
     setlocale(LC_ALL, "");
@@ -21,6 +22,12 @@ int main(int argc, char *argv[]){
 
     USERLIST userList = createUserList();
     APPLICANTLIST applicantList = {};
+
+
+    char* opt[2] = { "A", "B" };
+
+    menuSelect(opt, 0, "wW", "sS", 2, "*", "", ' ', "cls");
+    
 
     if(loadHCourseData(&hcourseList) < 0) hcourseList = createHCourseList(areaList.items, unitList.items);
 
