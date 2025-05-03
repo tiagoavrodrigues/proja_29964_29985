@@ -26,4 +26,5 @@ void clearBuffer();
 void _pause();
 void printFixedWidth(char string[], char fillerChar, unsigned short width);
 void printColored(char string[], eColor color, unsigned short width);
+void inputPasswordMask(char*);
 #endif

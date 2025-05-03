@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 #include "include/utils.h"
+#include "include/user.h"
 
 #ifdef _WIN32
 
 #include <windows.h>
-
+#include <conio.h>
 void enableANSI() { // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WINDOWS
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
@@ -15,6 +17,8 @@ void enableANSI() { // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WI
     SetConsoleMode(hOut, dwMode);
 }
 
+#else
+#include <termios.h>
 #endif
 
 void clearScreen(){
@@ -67,4 +71,27 @@ void printColored(char string[], eColor color, unsigned short width){
 
     printf(RESET);
 
+}
+
+void inputPasswordMask(char password[PASSWORD_MAX_CHAR]){
+    int p = 0;
+    char ch;
+    do {
+        ch = getch();
+        
+        // Handle backspace
+        if(ch == 8 && p > 0){
+            printf("\b \b");  // Move back, space, move back again
+            p--;
+        }
+        // Handle normal character (not Enter or Backspace)
+        else if(ch >= 32 && ch <= 126 &&  // Printable ASCII range
+                ch != ' ' &&               // Explicitly exclude space
+                p < PASSWORD_MAX_CHAR - 1){
+            password[p] = ch;
+            printf("*");
+            p++;
+        }
+    } while (ch != '\r');
+    password[p] = '\0';
 }
