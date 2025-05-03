@@ -4,7 +4,7 @@
 #include "include/utils.h"
 
 #ifdef _WIN32
-#define CLEAR "cls"
+
 #include <windows.h>
 
 void enableANSI() { // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WINDOWS
@@ -15,8 +15,6 @@ void enableANSI() { // ANSI CODES PARA TEXTO COLORIDO NA LINHA DE COMANDOS DO WI
     SetConsoleMode(hOut, dwMode);
 }
 
-#else
-#define CLEAR "clear"
 #endif
 
 void clearScreen(){
@@ -28,7 +26,7 @@ void clearBuffer(){
     while((c = getchar()) != '\n' && c != EOF);
 }
 
-void pause(){
+void _pause(){
     printf("\nPrima Enter para continuar...");
     getchar();
 }
