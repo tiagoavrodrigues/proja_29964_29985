@@ -7,8 +7,11 @@
 #define YEAR_MIN 1900
 #define YEAR_MAX 2010
 #define NAME_MAX_CHAR 51
+#define NCC_MAX_CHAR 9
+#define NIF_MAX_CHAR 10
+#define SCHOOL_MAX_CHAR 101
 
-#define APPLICANT_FILENAME "data/applicant.dat"
+#define APPLICANT_FILENAME "src/data/applicant.dat"
 
 typedef struct date{
     unsigned short day;
@@ -20,11 +23,11 @@ typedef struct applicant{
     USER user;
     char name[NAME_MAX_CHAR];
     char surname[NAME_MAX_CHAR];
-    unsigned nCC;
-    unsigned nif;
+    unsigned char nCC[NCC_MAX_CHAR];
+    unsigned char nif[NIF_MAX_CHAR];
     DATE dateofbirth;
-    COURSE course;
-    char school;
+    char hcourseCode[CODE_MAX_CHAR];
+    char school[SCHOOL_MAX_CHAR];
     float mean;
 } APPLICANT;
 
@@ -33,7 +36,7 @@ typedef struct applicantlist{
     APPLICANT *applicants;
 } APPLICANTLIST;
 
-int isValidDate(unsigned short day, unsigned short month, unsigned short year);
+unsigned short isValidDate(unsigned short day, unsigned short month, unsigned short year);
 short addApplicant(APPLICANTLIST *applicantList, APPLICANT newApplicant);
 short editApplicantInfo(APPLICANT *applicantInfo, APPLICANT newInfo);
 

@@ -5,7 +5,7 @@
 #include "include/user.h"
 #include "include/utils.h"
 
-int isValidDate(unsigned short day, unsigned short month, unsigned short year){
+unsigned short isValidDate(unsigned short day, unsigned short month, unsigned short year){
 
     if(year < YEAR_MIN || year > YEAR_MAX) return 0;
     if(day == 0 || day > 31) return 0;
