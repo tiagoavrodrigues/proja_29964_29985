@@ -6,6 +6,7 @@
 #include "include/user.h"
 #include "include/applicant.h"
 #include "include/course.h"
+#include "include/interface_utils.h"
 
 #ifdef _WIN32
 
@@ -48,7 +49,7 @@ void printFixedWidth(char string[], char fillerChar, unsigned short width){
         if(string[strLength] < 0) specialCharCount++;
     }
 
-    if(specialCharCount >= 2) specialCharCount /= 2; // dois caracteres especiais equivalem a um caracter de output
+    if(specialCharCount >= 2) specialCharCount /= 2; // dois caracteres especiais == a um caracter de output
 
     unsigned short printedChars = 0;
     for(unsigned short i = 0; i < width && i <= strLength; i++){
@@ -83,21 +84,36 @@ void inputPasswordMask(char password[PASSWORD_MAX_CHAR]){
     do {
         ch = getch();
         
-        // Handle backspace
-        if(ch == 8 && p > 0){
-            printf("\b \b");  // Move back, space, move back again
+        if(ch == 8 && p > 0){ // backspace
+            printf("\b \b");
             p--;
         }
-        // Handle normal character (not Enter or Backspace)
-        else if(ch >= 32 && ch <= 126 &&  // Printable ASCII range
-                ch != ' ' &&               // Explicitly exclude space
-                p < PASSWORD_MAX_CHAR - 1){
+        else if(ch >= 32 && ch <= 126 && ch != ' ' && p < PASSWORD_MAX_CHAR - 1){
             password[p] = ch;
             printf("*");
             p++;
         }
     } while (ch != 10);
     password[p] = '\0';
+}
+
+void inputNumber(unsigned char input[], unsigned short maxChar){
+    int p = 0;
+    char ch;
+    do {
+        ch = getch();
+        
+        if(ch == 8 && p > 0){ // backspace
+            printf("\b \b");
+            p--;
+        }
+        else if(ch >= 30 && ch <= 39 && ch != ' ' && p < maxChar - 1){
+            input[p] = ch;
+            printf("%c", ch);
+            p++;
+        }
+    } while (ch != 10);
+    input[p] = '\0';
 }
 
 void initMemory(AREALIST *areaList, UNITLIST *unitList,HCOURSELIST *hcourseList, APPLICANTLIST *applicantList){
