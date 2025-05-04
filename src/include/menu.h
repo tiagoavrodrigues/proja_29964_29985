@@ -4,6 +4,7 @@
 
 void drawLoginUsername();
 void drawLoginPassword(char username[]);
-short login(USERLIST userList, USER *loggedUser);
+short loginForm(USERLIST userList, USER *loggedUser);
+void registerUserInfoForm();
 
 #endif
