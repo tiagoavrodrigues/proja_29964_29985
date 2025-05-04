@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
 
     clearScreen();
 
-    login(userList, &loggedUser);
+    loginForm(userList, &loggedUser);
 
     clearScreen();
     
