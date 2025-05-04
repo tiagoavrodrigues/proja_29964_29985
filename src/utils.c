@@ -4,6 +4,8 @@
 
 #include "include/utils.h"
 #include "include/user.h"
+#include "include/applicant.h"
+#include "include/course.h"
 
 #ifdef _WIN32
 
@@ -37,6 +39,8 @@ void _pause(){
 
 void printFixedWidth(char string[], char fillerChar, unsigned short width){
     if(string == NULL || string[0] == '\0') return;
+
+    if(width == 0) width = strlen(string) + 1;
 
     unsigned short strLength = 0;
     unsigned short specialCharCount = 0;
@@ -92,6 +96,20 @@ void inputPasswordMask(char password[PASSWORD_MAX_CHAR]){
             printf("*");
             p++;
         }
-    } while (ch != '\r');
+    } while (ch != 10);
     password[p] = '\0';
+}
+
+void initMemory(AREALIST *areaList, UNITLIST *unitList,HCOURSELIST *hcourseList, APPLICANTLIST *applicantList){
+    *areaList = createAreaList();
+    *unitList = createUnitList();
+    if(loadHCourseData(hcourseList) < 0) *hcourseList = createHCourseList(areaList->items, unitList->items);
+    if(loadApplicantData(applicantList) < 0) return;
+    return;
+}
+
+void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applicantList){
+    saveUserData(userList);
+    saveHCourseData(hcourseList);
+    saveApplicantData(applicantList);
 }

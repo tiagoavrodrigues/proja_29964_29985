@@ -1,3 +1,4 @@
+#include "applicant.h"
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -27,4 +28,6 @@ void _pause();
 void printFixedWidth(char string[], char fillerChar, unsigned short width);
 void printColored(char string[], eColor color, unsigned short width);
 void inputPasswordMask(char*);
+void initMemory(AREALIST *areaList, UNITLIST *unitList, HCOURSELIST *hcourseList, APPLICANTLIST *applicantList);
+void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applicantList);
 #endif
