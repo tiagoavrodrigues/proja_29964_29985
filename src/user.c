@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "include/user.h"
+#include "include/utils.h"
 
 USERLIST createUserList(){
     USER *users = (USER *) calloc(1, sizeof(USER));
@@ -34,7 +35,7 @@ short authenticateUser(USERLIST userList, USER user){
 
     for(unsigned short i = 0; i < userList.count; i++){
         if(strcmp(userList.users[i].username, user.username) == 0
-            && strcmp(userList.users[i].password, user.password) == 0) return 1;
+            && strcmp(userList.users[i].password, user.password) == 0) return userList.users[i].type == Admin ? 1 : 2;
     }
 
     return 0;
@@ -50,15 +51,17 @@ short userExists(USERLIST userList, char username[USERNAME_MAX_CHAR]){
     return 0;
 }
 
-short saveUserData(USERLIST *userList){
+short saveUserData(USERLIST userList){
     FILE *fp;
 
-    if((fp = fopen(USER_FILENAME, "rb")) == NULL){
+    if((fp = fopen(USER_FILENAME, "wb")) == NULL){
+        printColored("\nErro ao abrir o ficheiro " USER_FILENAME "!", Red, 0);
+        _pause();
         return -1;
     };
 
-    fwrite(&userList->count, sizeof(unsigned short), 1, fp);
-    fwrite(userList->users, sizeof(USER), userList->count, fp);
+    fwrite(&userList.count, sizeof(unsigned short), 1, fp);
+    fwrite(userList.users, sizeof(USER), userList.count, fp);
 
     fclose(fp);
     return 0;
