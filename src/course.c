@@ -68,41 +68,41 @@ HCOURSELIST createHCourseList(AREA *areas, UNIT *units) {
     if(hcourses == NULL) return (HCOURSELIST) {HCOURSE_ITEM_QUANTITY, (HCOURSE *) NULL};
 
     int i = 0;
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP001", "Gestão Hoteleira", getArea(areas, 4), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP002", "Construção e Reabilitação", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP003", "Desenvolvimento Web e Multimédia", getArea(areas, 9), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP004", "Impressão 3D e Maquinação Automática", getArea(areas, 10), getUnit(units, 0), Closed };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP005", "Manutenção Mecânica", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP006", "Manutenção Automóvel", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP007", "Mecatrónica", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP008", "Sistemas Elétricos de Energia", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP009", "Sistemas Eletrónicos e Computadores", getArea(areas, 10), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP010", "Tecnologias e Programação de Sistemas de Informação", getArea(areas, 9), getUnit(units, 0), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP011", "Turismo de Gastronomia e Vinhos", getArea(areas, 21), getUnit(units, 0), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP001", "Gestão Hoteleira", 2, getArea(areas, 4), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP002", "Construção e Reabilitação", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP003", "Desenvolvimento Web e Multimédia", 2, getArea(areas, 9), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP004", "Impressão 3D e Maquinação Automática", 2, getArea(areas, 10), getUnit(units, 0), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP005", "Manutenção Mecânica", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP006", "Manutenção Automóvel", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP007", "Mecatrónica", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP008", "Sistemas Elétricos de Energia", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP009", "Sistemas Eletrónicos e Computadores", 2, getArea(areas, 10), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP010", "Tecnologias e Programação de Sistemas de Informação", 2, getArea(areas, 9), getUnit(units, 0), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP011", "Turismo de Gastronomia e Vinhos", 2, getArea(areas, 21), getUnit(units, 0), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP012", "Termalismo e Bem-Estar", getArea(areas, 15), getUnit(units, 1), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP012", "Termalismo e Bem-Estar", 2, getArea(areas, 15), getUnit(units, 1), Open };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP013", "Arte e Fabricação Digital", getArea(areas, 0), getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP014", "Artes e Tecnologia [Luz, Som e Imagem]", getArea(areas, 0), getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP015", "Ilustração e Produção Gráfica", getArea(areas, 0), getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP016", "Intervenção Educativa em Creche", getArea(areas, 1), getUnit(units, 2), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP017", "Intervenção Sociocomunitária e Envelhecimento", getArea(areas, 1), getUnit(units, 2), Closed };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP018", "Serviços Educativos e Património Local", getArea(areas, 21), getUnit(units, 2), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP013", "Arte e Fabricação Digital", 2, getArea(areas, 0), getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP014", "Artes e Tecnologia [Luz, Som e Imagem]", 2, getArea(areas, 0), getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP015", "Ilustração e Produção Gráfica", 2, getArea(areas, 0), getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP016", "Intervenção Educativa em Creche", 2, getArea(areas, 1), getUnit(units, 2), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP017", "Intervenção Sociocomunitária e Envelhecimento", 2, getArea(areas, 1), getUnit(units, 2), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP018", "Serviços Educativos e Património Local", 2, getArea(areas, 21), getUnit(units, 2), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP019", "Treino Desportivo", getArea(areas, 15), getUnit(units, 3), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP020", "Trabalhos em Altura e Acesso por Cordas", getArea(areas, 10), getUnit(units, 3), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP019", "Treino Desportivo", 2, getArea(areas, 15), getUnit(units, 3), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP020", "Trabalhos em Altura e Acesso por Cordas", 2, getArea(areas, 10), getUnit(units, 3), Closed };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP021", "Cuidados Veterinários", getArea(areas, 14), getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP022", "Fruticultura, Viticultura e Enologia", getArea(areas, 13), getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP023", "Gestão de Empresas Agrícolas", getArea(areas, 13), getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP024", "Indústrias Biotecnológicas", getArea(areas, 6), getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP025", "Riscos e Proteção Civil", getArea(areas, 20), getUnit(units, 4), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP026", "Turismo Rural e de Natureza", getArea(areas, 4), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP021", "Cuidados Veterinários", 2, getArea(areas, 14), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP022", "Fruticultura, Viticultura e Enologia", 2, getArea(areas, 13), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP023", "Gestão de Empresas Agrícolas", 2, getArea(areas, 13), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP024", "Indústrias Biotecnológicas", 2, getArea(areas, 6), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP025", "Riscos e Proteção Civil", 2, getArea(areas, 20), getUnit(units, 4), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP026", "Turismo Rural e de Natureza", 2, getArea(areas, 4), getUnit(units, 4), Open };
 
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP027", "Contabilidade e Gestão para PME", getArea(areas, 4), getUnit(units, 5), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP028", "Marketing Digital e E-Commerce", getArea(areas, 4), getUnit(units, 5), Open };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP029", "Gestão e Melhoria Contínua das Empresas", getArea(areas, 4), getUnit(units, 5), Closed };
-    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP030", "Transportes e Logística", getArea(areas, 4), getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP027", "Contabilidade e Gestão para PME", 2, getArea(areas, 4), getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP028", "Marketing Digital e E-Commerce", 2, getArea(areas, 4), getUnit(units, 5), Open };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP029", "Gestão e Melhoria Contínua das Empresas", 2, getArea(areas, 4), getUnit(units, 5), Closed };
+    hcourses[i++] = (HCOURSE) { CTeSP, "CTESP030", "Transportes e Logística", 2, getArea(areas, 4), getUnit(units, 5), Open };
 
     return (HCOURSELIST) {HCOURSE_ITEM_QUANTITY, (HCOURSE *) hcourses};
 }
@@ -120,6 +120,18 @@ HCOURSE* getHCourse(HCOURSELIST hcourseList, unsigned char code[]){
     return NULL;
 }
 
+unsigned short isValidHCourse(HCOURSELIST hcourseList, unsigned char code[]){
+    if(hcourseList.count == 0 || code == NULL || code[0] == '\0'){
+        return 0;
+    }
+
+    for(unsigned short i = 0; i < hcourseList.count; i++){
+        if(strcmp(hcourseList.items[i].code, code) == 0) return 1; 
+    }
+
+    return 0;
+}
+
 short setHCourseState(HCOURSE *course, eState newState){
     if (course == NULL) {
         return -1;
@@ -127,6 +139,15 @@ short setHCourseState(HCOURSE *course, eState newState){
 
     course->state = newState;
     return 0;
+}
+
+short changeHCourseState(HCOURSE *course) {
+    if (course == NULL) {
+        return -1;
+    }
+
+    eState newState = (course->state == Open) ? Closed : Open;
+    return setHCourseState(course, newState);
 }
 
 short addHCourse(HCOURSELIST *hcourseList, HCOURSE newCourse){
@@ -161,9 +182,9 @@ void listHCourses(HCOURSELIST hcourseList){
     }
 
     printf(
-        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
-        "| Code      | Course Description                              | Area                                | School | State  |\n"
-        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
+        "| CÓDIGO    | DESCRIÇÂO                                       | ÁREA                                | ESCOLA | VAGAS  | ESTADO |\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
     );
     for (unsigned short i = 0; i < hcourseList.count; i++) {
         printf(
@@ -173,16 +194,54 @@ void listHCourses(HCOURSELIST hcourseList){
         printFixedWidth(hcourseList.items[i].description, ' ', 46); 
         printf(" | ");
         printFixedWidth(hcourseList.items[i].area.description, ' ', 34); 
-            printf(
-                " | %-6s | ",
-                hcourseList.items[i].school.acronym
-            );
-            
+        printf(
+            " | %-6s | ",
+            hcourseList.items[i].school.acronym
+        );
+        printf(
+            "%-6d | ",
+            hcourseList.items[i].state == Open ? hcourseList.items[i].slots : 0
+        );    
         hcourseList.items[i].state == Open ? printColored("Open", Green, 6) : printColored("Closed", Red, 6);
         
         printf("|\n");
     }
-    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
+    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n");
+}
+
+void listOpenHCourses(HCOURSELIST hcourseList){
+        if (!hcourseList.count || hcourseList.items == NULL) {
+        return;
+    }
+
+    printf(
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
+        "| CÓDIGO    | DESCRIÇÂO                                       | ÁREA                                | ESCOLA | VAGAS  | ESTADO |\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
+    );
+    for (unsigned short i = 0; i < hcourseList.count; i++) {
+        if(hcourseList.items[i].state == Open){
+            printf(
+                "| %-9s | ",
+                hcourseList.items[i].code
+            );
+            printFixedWidth(hcourseList.items[i].description, ' ', 46); 
+            printf(" | ");
+            printFixedWidth(hcourseList.items[i].area.description, ' ', 34); 
+            printf(
+                " | %-6s | ",
+                hcourseList.items[i].school.acronym
+            );
+            printf(
+                "%-6d | ",
+                hcourseList.items[i].state == Open ? hcourseList.items[i].slots : 0
+            );      
+            hcourseList.items[i].state == Open ? printColored("Open", Green, 6) : printColored("Closed", Red, 6); //condição fica para debug
+            
+            printf("|\n");
+        };
+    }
+    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n");
 }
 
 void listHCoursesAsc(HCOURSELIST hcourseList){
@@ -220,9 +279,9 @@ void listHCoursesByUnit(HCOURSELIST hcourseList, unsigned short unitID){
     if(hcourseList.count == 0 || hcourseList.items == NULL) return;
 
     printf(
-        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
-        "| Code      | Course Description                              | Area                                | School | State  |\n"
-        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
+        "| CÓDIGO    | DESCRIÇÂO                                       | ÁREA                                | ESCOLA | VAGAS  | ESTADO |\n"
+        "+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n"
     );
     
     for (unsigned short i = 0; i < hcourseList.count; i++) {
@@ -238,13 +297,16 @@ void listHCoursesByUnit(HCOURSELIST hcourseList, unsigned short unitID){
                 " | %-6s | ",
                 hcourseList.items[i].school.acronym
             );
-                
-            hcourseList.items[i].state == Open ? printColored("Open", Green, 6) : printColored("Closed", Red, 6);
+            printf(
+                "%-6d | ",
+                hcourseList.items[i].state == Open ? hcourseList.items[i].slots : 0
+            );    
+            hcourseList.items[i].state == Open ? printColored("ABERTO", Green, 6) : printColored("FECHADO", Red, 6);
             
             printf("|\n");
         }
     }
-    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+\n");
+    printf("+-----------+-------------------------------------------------+-------------------------------------+--------+--------+--------+\n");
 }
 
 short saveHCourseData(HCOURSELIST hcourseList){

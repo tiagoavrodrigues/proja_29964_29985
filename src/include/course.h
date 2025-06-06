@@ -12,8 +12,8 @@
 #define COURSE_FILENAME "data/hcourse.dat"
 
 typedef enum estate{
-    Closed,
-    Open
+    Open,
+    Closed
 } eState;
 
 typedef struct area{
@@ -30,6 +30,7 @@ typedef struct hcourse{
     enum { CTeSP, Bachelor, Master, Doctorate } type;
     unsigned char code[CODE_MAX_CHAR];
     char description[DESCRIPTION_MAX_CHAR];
+    unsigned slots;
     AREA area;
     UNIT school;
     eState state;
@@ -54,13 +55,17 @@ HCOURSELIST createHCourseList(AREA*, UNIT*);
 
 HCOURSE* getHCourse(HCOURSELIST hcourseList, unsigned char code[]);
 short setHCourseState(HCOURSE *hcourse, eState newState);
+short changeHCourseState(HCOURSE *course);
 
 short addHCourse(HCOURSELIST*, HCOURSE newCourse);
 short editHCourse(HCOURSE *hcourse, HCOURSE newCourseInfo);
 
+unsigned short isValidHCourse(HCOURSELIST hcourseList, unsigned char code[]);
+
 void listHCourses(HCOURSELIST);
 void listHCoursesAsc(HCOURSELIST);
 void listHCoursesByUnit(HCOURSELIST, unsigned short unitID);
+void listOpenHCourses(HCOURSELIST hcourseList);
 
 short loadHCourseData(HCOURSELIST *hcourseList);
 short saveHCourseData(HCOURSELIST hcourseList);

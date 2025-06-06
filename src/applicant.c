@@ -30,10 +30,6 @@ APPLICANT* getApplicant(APPLICANTLIST applicantList, USER loggedUser){
 }
 
 short addApplicant(APPLICANTLIST *applicantList, APPLICANT newApplicant){
-    if(applicantList == NULL || !applicantList->count || applicantList->applicants == NULL){
-        return -1;
-    }
-
     APPLICANT *newItems = realloc(applicantList->applicants, (applicantList->count + 1) * sizeof(APPLICANT));
     if (newItems == NULL) {
         return -1;
@@ -86,4 +82,96 @@ short loadApplicantData(APPLICANTLIST *applicantList){
 
     fclose(fp);
     return 0;
+}
+
+short printApplicationInfo(APPLICANT applicant, HCOURSELIST hcourseList){
+    FILE *fp = NULL;
+
+    if((fp = fopen(APPLICANT_FILENAME_PRINT, "w")) == NULL){
+        printColored("\nErro ao abrir o ficheiro " APPLICANT_FILENAME_PRINT "!", Red, 0);
+        _pause();
+        return -1;
+    }
+
+    fprintf(fp,
+        "Nome:%s %s\n"
+        "CC: %s\n"
+        "NIF: %s\n"
+        "Data de nascimento: %02d/%02d/%04d\n" 
+        "Candidato a: %s - %s\n"
+        "Curso Secundário: %s\n"
+        "Área: %d - %s\n"
+        "Escola: %s\n"
+        "Média: %.2f\n"
+        , applicant.name
+        , applicant.surname
+        , applicant.nCC
+        , applicant.nif
+        , applicant.dateofbirth.day
+        , applicant.dateofbirth.month
+        , applicant.dateofbirth.year
+        , applicant.hcourseCode, getHCourse(hcourseList, applicant.hcourseCode)->description
+        , applicant.course.description
+        , applicant.course.area.id
+        , applicant.course.area.description
+        , applicant.school
+        , applicant.mean
+        , applicant.applicationStatus
+    );
+    switch(applicant.applicationStatus){
+        case 0: fprintf(fp, "Estado da candidatura: Pendente\n"); break;
+        case 1: fprintf(fp, "Estado da candidatura: Inscrito\n"); break;
+        case 2: fprintf(fp, "Estado da candidatura: Aceite\n"); break;
+        case 3: fprintf(fp, "Estado da candidatura: Rejeiteda\n"); break;
+    }
+
+    printColored("\nFicheiro criado: " APPLICANT_FILENAME_PRINT "!", Green, 0);
+    _pause();
+    if(fp) fclose(fp);
+    return 0;
+};
+
+void getApplicantInfo(APPLICANT *currentApplicant, APPLICANTLIST applicantList){
+    if(currentApplicant == NULL || applicantList.count == 0) return;
+    for(unsigned int i = 0; i < applicantList.count; i++){
+        if(strcmp(currentApplicant->user.username, applicantList.applicants[i].user.username) == 0
+            && strcmp(currentApplicant->user.password, applicantList.applicants[i].user.password) == 0){
+            *currentApplicant = applicantList.applicants[i];
+            return;
+        }
+    }
+}
+
+short displayApplicationInfo(APPLICANT applicant, HCOURSELIST hcourseList){
+    printf(
+        "Nome:%s %s\n"
+        "CC: %s\n"
+        "NIF: %s\n"
+        "Data de nascimento: %02d/%02d/%04d\n" 
+        "Candidato a: %s - %s\n"
+        "Curso Secundário: %s\n"
+        "Área: %d - %s\n"
+        "Escola: %s\n"
+        "Média: %.2f\n"
+        , applicant.name
+        , applicant.surname
+        , applicant.nCC
+        , applicant.nif
+        , applicant.dateofbirth.day
+        , applicant.dateofbirth.month
+        , applicant.dateofbirth.year
+        , applicant.hcourseCode, getHCourse(hcourseList, applicant.hcourseCode)->description
+        , applicant.course.description
+        , applicant.course.area.id
+        , applicant.course.area.description
+        , applicant.school
+        , applicant.mean
+        , applicant.applicationStatus
+    );
+    switch(applicant.applicationStatus){
+        case 0: printf("Estado da candidatura: Pendente\n"); break;
+        case 1: printf("Estado da candidatura: Inscrito\n"); break;
+        case 2: printf("Estado da candidatura: Aceite\n"); break;
+        case 3: printf("Estado da candidatura: Rejeiteda\n"); break;
+    }
 }

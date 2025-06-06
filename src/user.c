@@ -37,7 +37,7 @@ short authenticateUser(USERLIST userList, USER user){
         if(strcmp(userList.users[i].username, user.username) == 0
             && strcmp(userList.users[i].password, user.password) == 0) return userList.users[i].type == Admin ? 1 : 2;
     }
-
+    
     return 0;
 }
 

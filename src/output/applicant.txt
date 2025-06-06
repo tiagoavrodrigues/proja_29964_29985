@@ -1,0 +1,10 @@
+Nome:Tiago Rodrigues
+CC: 999999999
+NIF: 999999999
+Data de nascimento: 08/12/1992
+Candidato a: CTESP003 - Desenvolvimento Web e Multimédia
+Curso Secundário: Curso
+Área: 9 - Informática
+Escola: Escola
+Média: 20.00
+Estado da candidatura: Inscrito

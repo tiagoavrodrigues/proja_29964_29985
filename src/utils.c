@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "include/utils.h"
 #include "include/user.h"
@@ -36,6 +37,13 @@ void clearBuffer(){
 void _pause(){
     printf("\nPrima Enter para continuar...");
     getchar();
+}
+
+void stringToUpper(char text[]){
+    if(text[0] == '\0') return;
+    for(unsigned int i = 0; text[i] != '\0'; i++){
+        text[i] = toupper(text[i]);
+    }
 }
 
 void printFixedWidth(char string[], char fillerChar, unsigned short width){
@@ -84,7 +92,7 @@ void inputPasswordMask(char password[PASSWORD_MAX_CHAR]){
     do {
         ch = getch();
         
-        if(ch == 8 && p > 0){ // backspace
+        if((ch == 8 || ch == 127) && p > 0){ // backspace
             printf("\b \b");
             p--;
         }
@@ -102,17 +110,34 @@ void inputNumber(unsigned char input[], unsigned short maxChar){
     char ch;
     do {
         ch = getch();
-        
-        if(ch == 8 && p > 0){ // backspace
+        if((ch == 8 || ch == 127) && p > 0){ // backspace
             printf("\b \b");
             p--;
         }
-        else if(ch >= 30 && ch <= 39 && ch != ' ' && p < maxChar - 1){
+        else if(ch >= '0' && ch <= '9' && p < maxChar - 1){
             input[p] = ch;
             printf("%c", ch);
             p++;
         }
-    } while (ch != 10);
+    } while (ch != ENTER_KEY);
+    input[p] = '\0';
+}
+
+void inputDate(unsigned char input[], unsigned short maxChar){
+    int p = 0;
+    char ch;
+    do {
+        ch = getch();
+        if((ch == 8 || ch == 127) && p > 0){ // backspace
+            printf("\b \b");
+            p--;
+        }
+        else if(((ch >= '0' && ch <= '9') || ch == '/')  && p < maxChar - 1){
+            input[p] = ch;
+            printf("%c", ch);
+            p++;
+        }
+    } while (ch != ENTER_KEY);
     input[p] = '\0';
 }
 
@@ -124,8 +149,9 @@ void initMemory(AREALIST *areaList, UNITLIST *unitList,HCOURSELIST *hcourseList,
     return;
 }
 
-void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applicantList){
+void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applicantList, ELEM *listHeader){
     saveUserData(userList);
     saveHCourseData(hcourseList);
     saveApplicantData(applicantList);
+    saveApplication(listHeader);
 }
