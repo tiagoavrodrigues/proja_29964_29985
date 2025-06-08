@@ -123,6 +123,24 @@ void inputNumber(unsigned char input[], unsigned short maxChar){
     input[p] = '\0';
 }
 
+void inputNumberMenu(unsigned char input[], unsigned short maxChar){
+    int p = 0;
+    char ch;
+    do {
+        ch = getch();
+        if((ch == 8 || ch == 127) && p > 0){ // backspace
+            printf("\b \b");
+            p--;
+        }
+        else if(((ch >= '0' && ch <= '9') || ch == 'a') && p < maxChar - 1){
+            input[p] = ch;
+            printf("%c", ch);
+            p++;
+        }
+    } while (ch != ENTER_KEY);
+    input[p] = '\0';
+}
+
 void inputDate(unsigned char input[], unsigned short maxChar){
     int p = 0;
     char ch;
@@ -153,5 +171,5 @@ void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applic
     saveUserData(userList);
     saveHCourseData(hcourseList);
     saveApplicantData(applicantList);
-    saveApplication(listHeader);
+    saveApplications(listHeader);
 }

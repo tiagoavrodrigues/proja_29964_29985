@@ -41,8 +41,6 @@ void drawNewPassword(char username[]){
     );
 }
 
-
-
 short loginForm(USERLIST *userList, USER *loggedUser, AREALIST areaList, HCOURSELIST hcourseList, APPLICANT *currentApplicant, APPLICANTLIST *applicantList, ELEM **listHeader){
     char username[USERNAME_MAX_CHAR];
     char password[PASSWORD_MAX_CHAR];
@@ -54,12 +52,14 @@ short loginForm(USERLIST *userList, USER *loggedUser, AREALIST areaList, HCOURSE
 
     fgets(username, USERNAME_MAX_CHAR, stdin);
     username[strcspn(username, "\n")] = '\0';
+
     if(!userExists(*userList, username)){
         char opt;
         printf("\n\n > "); printColored("O utilizador não existe! Deseja criar? (S/n)\n", Yellow, 0);
         opt = getchar();
         if(opt == 'S' || opt == 's') {
             registerUserInfoForm(areaList, &newApplicant, hcourseList, Registration);
+            //saveApplicantData(newApplicant);
             newRegistration = 1;
         } else return -1;
     }
@@ -386,6 +386,7 @@ void drawAdminMenu(eState *applicationsState){
         "\n [7] Abrir/Fechar candidaturas"
         "\n [8] Imprimir Informação"
         "\n [9] Análise de candidaturas"
+        "\n [a] Serializar candidaturas"
         "\n [:]"
         "\n [0] Sair"
         "\n\n > "

@@ -175,3 +175,89 @@ short displayApplicationInfo(APPLICANT applicant, HCOURSELIST hcourseList){
         case 3: printf("Estado da candidatura: Rejeiteda\n"); break;
     }
 }
+
+short printApplicationState(APPLICANT applicant, HCOURSELIST hcourseList){
+    FILE *fp = NULL;
+
+    if((fp = fopen("output/applications.txt", "a+")) == NULL){
+        printColored("\nErro ao abrir o ficheiro output/applications.txt!", Red, 0);
+        _pause();
+        return -1;
+    }
+
+    fprintf(fp,
+        "Nome:%s %s\n"
+        "CC: %s\n"
+        "Candidato a: %s - %s\n"
+        "Média: %.2f\n"
+        , applicant.name
+        , applicant.surname
+        , applicant.nCC
+        , applicant.hcourseCode, getHCourse(hcourseList, applicant.hcourseCode)->description
+        , applicant.mean
+    );
+    switch(applicant.applicationStatus){
+        case 0: fprintf(fp, "Estado da candidatura: Pendente\n"); break;
+        case 1: fprintf(fp, "Estado da candidatura: Inscrito\n"); break;
+        case 2: fprintf(fp, "Estado da candidatura: Aceite\n"); break;
+        case 3: fprintf(fp, "Estado da candidatura: Rejeiteda\n"); break;
+    }
+    fprintf(fp, "\n---------------------\n");
+
+    printColored("\nFicheiro criado: output/applications.txt!", Green, 0);
+    _pause();
+    if(fp) fclose(fp);
+    return 0;
+};
+
+short printApplicationStateByCourse(APPLICANT applicant, HCOURSELIST hcourseList){
+    FILE *fp = NULL;
+
+    char filename[strlen("output/") + strlen(applicant.hcourseCode) + strlen(".txt") + 1];
+    strcpy(filename, "output/");
+    strcat(filename, applicant.hcourseCode);
+    strcat(filename, ".txt");
+
+    if((fp = fopen(filename, "a+")) == NULL){
+        printColored("\nErro ao abrir o ficheiro!", Red, 0);
+        _pause();
+        return -1;
+    }
+
+    fprintf(fp,
+        "Nome:%s %s\n"
+        "CC: %s\n"
+        "NIF: %s\n"
+        "Data de nascimento: %02d/%02d/%04d\n" 
+        "Candidato a: %s - %s\n"
+        "Curso Secundário: %s\n"
+        "Área: %d - %s\n"
+        "Escola: %s\n"
+        "Média: %.2f\n"
+        , applicant.name
+        , applicant.surname
+        , applicant.nCC
+        , applicant.nif
+        , applicant.dateofbirth.day
+        , applicant.dateofbirth.month
+        , applicant.dateofbirth.year
+        , applicant.hcourseCode, getHCourse(hcourseList, applicant.hcourseCode)->description
+        , applicant.course.description
+        , applicant.course.area.id
+        , applicant.course.area.description
+        , applicant.school
+        , applicant.mean
+        , applicant.applicationStatus
+    );
+    switch(applicant.applicationStatus){
+        case 0: fprintf(fp, "Estado da candidatura: Pendente\n"); break;
+        case 1: fprintf(fp, "Estado da candidatura: Inscrito\n"); break;
+        case 2: fprintf(fp, "Estado da candidatura: Aceite\n"); break;
+        case 3: fprintf(fp, "Estado da candidatura: Rejeiteda\n"); break;
+    }
+
+    printColored("\nFicheiro criado: " APPLICANT_FILENAME_PRINT "!", Green, 0);
+    _pause();
+    if(fp) fclose(fp);
+    return 0;
+}

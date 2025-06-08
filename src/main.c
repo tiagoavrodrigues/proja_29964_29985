@@ -43,19 +43,20 @@ int main(int argc, char *argv[]){
 
     ELEM *listHeader = NULL;
 
-    char opc[1];
+    char opc[2];
+
+    loadApplications(&listHeader);
 
     initMemory(&areaList, &unitList, &hcourseList, &applicantList);
 
     applicationsState = Open; // REMOVER
 
-
     clearScreen();
     loginForm(&userList, &loggedUser, areaList, hcourseList, &currentApplicant, &applicantList, &listHeader);
 
-    int abc = 1;
+    if(loggedUser.type == Applicant) enrollApplicant(&listHeader, &currentApplicant, applicationsState);
+    saveApplications(listHeader);
 
-    enrollApplicant(listHeader, &currentApplicant, applicationsState);
 
     do{
         clearScreen();
@@ -63,8 +64,9 @@ int main(int argc, char *argv[]){
             case Admin: drawAdminMenu(&applicationsState); break;
             case Applicant: drawUserMenu(currentApplicant, applicationsState);break;
         }
-        inputNumber(opc, 2);
-        
+
+        inputNumberMenu(opc, 2);
+
         if(loggedUser.type == Admin){
             switch(opc[0]){
                 case '1': admMenuOpt1(&hcourseList, areaList, unitList, applicationsState); break;
@@ -74,8 +76,9 @@ int main(int argc, char *argv[]){
                 case '5': admMenuOpt5(hcourseList, unitList); break;
                 case '6': admMenuOpt6(listHeader, hcourseList); break;
                 case '7': admMenuOpt7(&applicationsState); break;
-                case '8': break;
+                case '8': admMenuOpt8(listHeader, hcourseList); break;
                 case '9': break;
+                case 'a': break;
             }
         }else{
             switch(opc[0]){
@@ -89,15 +92,15 @@ int main(int argc, char *argv[]){
             }
         }
     }while(opc[0] != '0');
-        
-    test(areaList, unitList, &hcourseList, &applicantList);
+ 
+    //test(areaList, unitList, &hcourseList, &applicantList);
 
     saveMemory(userList, hcourseList, applicantList, listHeader);
 
     free(userList.users);
     free(hcourseList.items);
-    free(unitList.items);
-    free(areaList.items);
+    //free(unitList.items);
+    //free(areaList.items);
     free(applicantList.applicants);
 
     return 0;
@@ -120,8 +123,9 @@ void test(AREALIST areaList, UNITLIST unitList, HCOURSELIST *hcourseList, APPLIC
 
 void enrollApplicant(ELEM **listHeader, APPLICANT *newApplicant, eState applicationsState){
     if(applicationsState == Open){
-        if(newApplicant->applicationStatus == Pending) newApplicant->applicationStatus = Enrolled;
-        if(!applicationExists(*listHeader, *newApplicant)){
+        if(newApplicant->applicationStatus == Pending){
+            newApplicant->applicationStatus = Enrolled;
+            //if(!applicationExists(listHeader, *newApplicant))
             addApplication(listHeader, *newApplicant); 
         }
     }
@@ -231,7 +235,7 @@ void admMenuOpt5(HCOURSELIST hcourseList, UNITLIST unitList){
 
 void admMenuOpt6(ELEM *listHeader, HCOURSELIST hcourseList){
     if(listHeader == NULL){
-        printf("\n > "); printColored("De momento não existem candidaturas.", Red, 0); _pause();
+        printf("\n > "); printColored("De momento não existem candidaturas.", Red, 0); _pause(); return;
     }
     unsigned char code[CODE_MAX_CHAR] = {0};
     unsigned short validInput = 0;
@@ -246,10 +250,14 @@ void admMenuOpt6(ELEM *listHeader, HCOURSELIST hcourseList){
         printf("\n > "); printColored("O código não existe!", Red, 0); _pause();
     }else{
         validInput = 1;
-        for(ELEM *aux = listHeader; aux->next != NULL; aux = aux->next){
-            displayApplicationInfo(aux->info, hcourseList);
-            printf("\n-----------\n");
+        clearScreen();
+        for(ELEM *aux = listHeader; aux != NULL; aux = aux->next){
+            if(strcmp(code, aux->info.hcourseCode) == 0){
+                displayApplicationInfo(aux->info, hcourseList);
+                printf("\n-----------\n");
+            }
         }
+        _pause();
     }
 }
 
@@ -261,6 +269,63 @@ void admMenuOpt7(eState *applicationsState){
         *applicationsState = Open;
         printf("\n > "); printColored("As candidaturas estão agora abertas!", Green, 0); _pause();
     }
+}
+
+void admMenuOpt8(ELEM *listHeader, HCOURSELIST hcourseList){
+    if(listHeader == NULL){
+        printf("\n > "); printColored("De momento não existem candidaturas.", Red, 0); _pause(); return;
+    }
+    char opc[2] = {0};
+    do{
+        clearScreen();
+        printf(
+        "\n+---------------------------------+"
+        "\n     IMPRIMIR INFORMAÇÃO"
+        "\n+---------------------------------+"
+        "\n\n\n"
+        "\n [1] Imprimir lista de candidatos"
+        "\n [2] Imprimir lista de colocados a um curso"
+        "\n [3] Imprimir lista de colocados numa escola"
+        "\n [:]"
+        "\n [0] Voltar ao menu principal"
+        "\n\n > "
+        );
+
+        inputNumber(opc, 2);
+
+        switch(opc[0]){
+            case '1': // IMPRIMIR LISTA DE CANDIDATOS
+                for(ELEM *aux = listHeader; aux != NULL; aux = aux->next) printApplicationState(aux->info, hcourseList);
+                printColored("\Informação adicionada: output/applications.txt!", Green, 0);
+                _pause();
+                break;
+            case '2': // IMPRIMIR LISTA DE CANDIDATOS A UM CURSO
+                unsigned char code[CODE_MAX_CHAR] = {0};
+                unsigned short validInput = 0;
+
+                clearScreen();
+                listHCourses(hcourseList);
+                printf("| Código: ");
+                fgets(code, CODE_MAX_CHAR + 1, stdin);
+                code[strcspn(code, "\n")] = '\0';
+                stringToUpper(code);
+                if(!isValidHCourse(hcourseList, code)){
+                    printf("\n > "); printColored("O código não existe!", Red, 0); _pause();
+                }else{
+                    validInput = 1;
+                    for(ELEM *aux = listHeader; aux != NULL; aux = aux->next){
+                        if(strcmp(code, aux->info.hcourseCode) == 0 && aux->info.applicationStatus == Accepted){
+                            printApplicationStateByCourse(aux->info, hcourseList);
+                            printf("\n-----------\n");
+                        }
+                    }
+                    _pause();
+                }
+                break;
+            case '3': //IMPRIMIR LISTA DE COLOCADOS NUMA ESCOLA
+                break;
+        }
+    }while(opc[0] != '0');
 }
 
 void newHcourseConstructionDialog(HCOURSELIST *hcourseList, AREALIST areaList, UNITLIST unitList, HCOURSE *newHcourse){

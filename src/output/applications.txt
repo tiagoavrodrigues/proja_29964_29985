@@ -1,0 +1,10 @@
+Nome:Tiago Rodrigues
+CC: 999999999
+Candidato a: CTESP003 - Desenvolvimento Web e Multimédia
+Média: 8.00
+Estado da candidatura: Inscrito
+Nome:Primeiro Ultimo
+CC: 000000000
+Candidato a: CTESP001 - Gestão Hoteleira
+Média: 20.00
+Estado da candidatura: Inscrito

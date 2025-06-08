@@ -11,8 +11,12 @@ typedef struct application{
     struct application *next;
 } ELEM;
 
-#endif
 
 short addApplication(ELEM **listHeader, APPLICANT newInfo);
-void saveApplication(ELEM *listHeader);
+void saveApplications(ELEM *listHeader);
+void loadApplications(ELEM **listHeader);
 short applicationExists(ELEM *listHeader, APPLICANT application);
+void orderByMeanDesc(ELEM *listHeader);
+
+#endif
+

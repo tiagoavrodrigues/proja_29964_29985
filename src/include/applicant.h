@@ -50,6 +50,9 @@ short saveApplicantData(APPLICANTLIST applicantList);
 short loadApplicantData(APPLICANTLIST *applicantList);
 
 short printApplicationInfo(APPLICANT applicant, HCOURSELIST hcourseList);
+short printApplicationState(APPLICANT applicant, HCOURSELIST hcourseList);
+short printApplicationStateByCourse(APPLICANT applicant, HCOURSELIST hcourseList);
+
 short displayApplicationInfo(APPLICANT applicant, HCOURSELIST hcourseList);
 
 #endif

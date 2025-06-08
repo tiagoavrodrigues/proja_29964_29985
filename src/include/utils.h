@@ -37,6 +37,7 @@ void printFixedWidth(char string[], char fillerChar, unsigned short width);
 void printColored(char string[], eColor color, unsigned short width);
 void inputPasswordMask(char password[]);
 void inputNumber(unsigned char input[], unsigned short maxChar);
+void inputNumberMenu(unsigned char input[], unsigned short maxChar);
 void inputDate(unsigned char input[], unsigned short maxChar);
 void initMemory(AREALIST *areaList, UNITLIST *unitList, HCOURSELIST *hcourseList, APPLICANTLIST *applicantList);
 void saveMemory(USERLIST userList, HCOURSELIST hcourseList, APPLICANTLIST applicantList, ELEM *listHeader);
